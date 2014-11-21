@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    
+    <packaging>jar</packaging>
+    <groupId>org.webjars</groupId>
+    <artifactId>leaflet.draw</artifactId>
+    <version>0.2.3</version>
+    <name>Leaflet draw</name>
+    <description>WebJar for Leaflet draw</description>
+    <url>http://webjars.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <upstream.version>0.2.3</upstream.version>
+        <upstream.url>http://cdnjs.cloudflare.com/ajax/libs/${project.artifactId}/${project.version}/</upstream.url>
+        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
+        <requirejs>
+            {
+                "paths": {
+                    "leaflet.draw": "leaflet.draw"
+                },
+                "shim": {
+                    "leaflet.draw": ["leaflet"]
+                }
+            }
+        </requirejs>
+    </properties>
+
+    <developers>
+        <developer>
+            <id>jecede</id>
+            <name>Joris Dekker</name>
+            <email>jorisdekker@gmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://github.com/Leaflet/Leaflet.draw/blob/master/MIT-LICENCE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>http://github.com/webjars/leaflet-draw</url>
+        <connection>scm:git:https://github.com/Leaflet/Leaflet.draw.git</connection>
+        <developerConnection>scm:git:https://github.com/Leaflet/Leaflet.draw.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>leaflet</artifactId>
+            <version>0.7.3</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                            	<mkdir dir="${destDir}/images"/>
+                                <echo message="download files" />
+                                <get src="${upstream.url}leaflet.draw-src.js" dest="${destDir}/${project.artifactId}-src.js" />
+                                <get src="${upstream.url}leaflet.draw.js" dest="${destDir}/${project.artifactId}.js" />
+                                <get src="${upstream.url}leaflet.draw.css" dest="${destDir}/${project.artifactId}.css" />
+                                <get src="${upstream.url}images/spritesheet-2x.png" dest="${destDir}/images/spritesheet-2x.png" />
+                                <get src="${upstream.url}images/spritesheet.png" dest="${destDir}/images/spritesheet.png" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.2</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>sonatype-nexus-staging</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
