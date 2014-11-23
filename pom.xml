@@ -10,8 +10,8 @@
     
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
-    <artifactId>leaflet.draw</artifactId>
-    <version>0.2.3</version>
+    <artifactId>Leaflet.draw</artifactId>
+    <version>0.2.3-SNAPSHOT</version>
     <name>Leaflet draw</name>
     <description>WebJar for Leaflet draw</description>
     <url>http://webjars.org</url>
@@ -19,15 +19,15 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <upstream.version>0.2.3</upstream.version>
-        <upstream.url>http://cdnjs.cloudflare.com/ajax/libs/${project.artifactId}/${project.version}/</upstream.url>
+        <upstream.url>http://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/${upstream.version}</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
         <requirejs>
             {
                 "paths": {
-                    "leaflet.draw": "leaflet.draw"
+                    "leaflet-draw": "leaflet.draw"
                 },
                 "shim": {
-                    "leaflet.draw": ["leaflet"]
+                    "leaflet-draw": ["leaflet"]
                 }
             }
         </requirejs>
@@ -50,9 +50,9 @@
     </licenses>
 
     <scm>
-        <url>http://github.com/webjars/leaflet-draw</url>
-        <connection>scm:git:https://github.com/Leaflet/Leaflet.draw.git</connection>
-        <developerConnection>scm:git:https://github.com/Leaflet/Leaflet.draw.git</developerConnection>
+        <url>http://github.com/webjars/Leaflet.draw</url>
+        <connection>scm:git:https://github.com/webjars/Leaflet.draw.git</connection>
+        <developerConnection>scm:git:https://github.com/webjars/Leaflet.draw.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     
@@ -78,11 +78,11 @@
                             <target>
                             	<mkdir dir="${destDir}/images"/>
                                 <echo message="download files" />
-                                <get src="${upstream.url}leaflet.draw-src.js" dest="${destDir}/${project.artifactId}-src.js" />
-                                <get src="${upstream.url}leaflet.draw.js" dest="${destDir}/${project.artifactId}.js" />
-                                <get src="${upstream.url}leaflet.draw.css" dest="${destDir}/${project.artifactId}.css" />
-                                <get src="${upstream.url}images/spritesheet-2x.png" dest="${destDir}/images/spritesheet-2x.png" />
-                                <get src="${upstream.url}images/spritesheet.png" dest="${destDir}/images/spritesheet.png" />
+                                <get src="${upstream.url}/leaflet.draw-src.js" dest="${destDir}" />
+                                <get src="${upstream.url}/leaflet.draw.js" dest="${destDir}" />
+                                <get src="${upstream.url}/leaflet.draw.css" dest="${destDir}" />
+                                <get src="${upstream.url}/images/spritesheet-2x.png" dest="${destDir}/images" />
+                                <get src="${upstream.url}/images/spritesheet.png" dest="${destDir}/images" />
                             </target>
                         </configuration>
                     </execution>
