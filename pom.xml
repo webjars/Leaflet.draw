@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>Leaflet.draw</artifactId>
-    <version>0.2.3-SNAPSHOT</version>
+    <version>0.2.3</version>
     <name>Leaflet draw</name>
     <description>WebJar for Leaflet draw</description>
     <url>http://webjars.org</url>
@@ -53,7 +53,7 @@
         <url>http://github.com/webjars/Leaflet.draw</url>
         <connection>scm:git:https://github.com/webjars/Leaflet.draw.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/Leaflet.draw.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>Leaflet.draw-0.2.3</tag>
     </scm>
     
     <dependencies>
@@ -76,7 +76,7 @@
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                            	<mkdir dir="${destDir}/images"/>
+                            	<mkdir dir="${destDir}/images" />
                                 <echo message="download files" />
                                 <get src="${upstream.url}/leaflet.draw-src.js" dest="${destDir}" />
                                 <get src="${upstream.url}/leaflet.draw.js" dest="${destDir}" />
